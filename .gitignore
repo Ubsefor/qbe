@@ -93,3 +93,4 @@ CMakeFiles
 Makefile
 qbe.elf
 build
+*.xcuserstate
