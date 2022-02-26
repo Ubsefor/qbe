@@ -80,3 +80,11 @@ Temporary Items
 
 # Xcode Build Information
 DerivedData
+
+# Other Build Caches
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
+Makefile
+qbe.elf
+build
