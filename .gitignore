@@ -80,7 +80,7 @@ Temporary Items
 
 # Xcode Build Information
 DerivedData
-QBE.xcodeproj/project.xcworkspace/xcuserdata
+QBE.xcodeproj/project.xcworkspace/*
 
 # Ignore qbe submodule in case anyone commits there 😐
 qbe/*
