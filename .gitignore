@@ -82,10 +82,6 @@ Temporary Items
 DerivedData
 QBE.xcodeproj/project.xcworkspace/*
 
-# Ignore qbe submodule in case anyone commits there 😐
-qbe/*
-qbe
-
 # Other Build Caches
 cmake_install.cmake
 CMakeCache.txt
