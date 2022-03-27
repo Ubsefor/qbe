@@ -2,11 +2,12 @@
 Quantum Based Enterpreter
 
 ```sh
-git clone https://github.com/ubsefor/qbe --recursive
+git clone https://github.com/ubsefor/qbe && cd qbe && ./download-and-install.sh
 ```
 
-Или, если вы не справились с этой командой:
-
-```sh
-git submodule update --init
+Примечание: на маках-сраках ``strip`` поменялся со времен Xcode 13.3. Если вас напрягает размер бинарника ``qbe``, можете сделать ``strip`` ручками: 
+```sh 
+strip bin/qbe
 ```
+
+Примечание 2: cmakelists позже поправлю (там надо заинклюдить локальные bin/include/lib чтобы оно собиралось адекватно)

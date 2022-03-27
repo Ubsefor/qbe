@@ -1,4 +1,4 @@
-#include "qbe/all.h"
+#include <qbe/all.h>
 
 #include <stdio.h>
 

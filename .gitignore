@@ -90,3 +90,9 @@ Makefile
 qbe.elf
 build
 *.xcuserstate
+
+# QBE library (as you need to compile & install it locally yourself)
+bin/qbe
+include/qbe
+qbe-lib
+lib/libqbe.a
