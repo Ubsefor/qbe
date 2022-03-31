@@ -1,0 +1,51 @@
+@l0
+	rd_in =
+
+@l1
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l2
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l3
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l4
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l5
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l7
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l8
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l9
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45
+
+@l6
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l10
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l11
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l13
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l16
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l17
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l14
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+
+@l12
+	rd_in = @l0%c @l0%n @l0%x @l0%y @l0%e @l0%ie @l0%col @l0%W @l0%H @l0%rnd @l0%win @l0%t4 @l0%t11 @l0%t12 @l0%t7 @l0%t16 @l0%t17 @l0%t15 @l0%t22 @l1%t28 @l1%t27 @l3%t50 @l3%t51 @l3%t52 @l3%t53 @l3%t49 @l3%t55 @l3%t54 @l4%t59 @l4%t60 @l4%t58 @l6%t74 @l6%t73 @l11%t77 @l11%t76 @l13%t81 @l13%t80 @l13%t79 @l13%t78 @l7%t64 @l7%t65 @l7%t63 @l9%t72 @l9%t71 @l2%t31 @l2%t33 @l2%t34 @l2%t35 @l2%t36 @l2%t32 @l2%t39 @l2%t43 @l2%t41 @l2%t40 @l2%t38 @l2%t46 @l2%t45 @l8%t67 @l8%t68 @l8%t66 @l8%t70 @l8%t69
+

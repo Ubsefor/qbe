@@ -1,0 +1,8 @@
+@start
+	rd_in =
+
+@loop
+	rd_in = @start%x @loop%x @loop%cond
+
+@end
+	rd_in = @loop%x @loop%cond
