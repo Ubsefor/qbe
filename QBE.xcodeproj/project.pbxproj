@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E8838AB27BFB5090039D87D /* 4rd.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E8838AA27BFB5090039D87D /* 4rd.c */; };
 		7EDE837627F5D7FC00CCC78E /* libqbe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDF3CEE27F0912C005EDF37 /* libqbe.a */; };
 		7EDE837D27F5D84600CCC78E /* 4licm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EDE837027F5D7F400CCC78E /* 4licm.c */; };
+		7EDE83C327F61CD800CCC78E /* 4rd.c in Sources */ = {isa = PBXBuildFile; fileRef = 7E8838AA27BFB5090039D87D /* 4rd.c */; };
 		7EDF3CF527F0912C005EDF37 /* libqbe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDF3CEE27F0912C005EDF37 /* libqbe.a */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +106,7 @@
 		7EDE83BE27F60F3100CCC78E /* 6-result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6-result.txt"; sourceTree = "<group>"; };
 		7EDE83BF27F60F3100CCC78E /* 10-result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10-result.txt"; sourceTree = "<group>"; };
 		7EDE83C027F60F3100CCC78E /* 3-result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-result.txt"; sourceTree = "<group>"; };
+		7EDE83C127F61B9200CCC78E /* 4rd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 4rd.cpp; sourceTree = "<group>"; };
 		7EDF3CEE27F0912C005EDF37 /* libqbe.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libqbe.a; sourceTree = "<group>"; };
 		7EDF3CF027F0912C005EDF37 /* qbe */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = qbe; sourceTree = "<group>"; };
 		7EDF3CF327F0912C005EDF37 /* all.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = all.h; path = include/qbe/all.h; sourceTree = SOURCE_ROOT; };
@@ -272,6 +273,7 @@
 				7E88388027BFB4CE0039D87D /* LICENSE */,
 				7E88388127BFB4CE0039D87D /* README.md */,
 				7E8838AA27BFB5090039D87D /* 4rd.c */,
+				7EDE83C127F61B9200CCC78E /* 4rd.cpp */,
 				7EDE837027F5D7F400CCC78E /* 4licm.c */,
 				0C9F2ADD1148E942BB70892A /* Products */,
 			);
@@ -350,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8838AB27BFB5090039D87D /* 4rd.c in Sources */,
+				7EDE83C327F61CD800CCC78E /* 4rd.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,217 +7,214 @@
 
 #include <qbe/all.h>
 #include <stdio.h>
-#include <memory.h>
 #include <stdbool.h>
-#include <string.h>
-#include <math.h>
 
 typedef struct {
-    char shortname[50];
-    char fullname[70];
-} Tmps;
+  char shortname[50];
+  char fullname[70];
+} tmps;
 
 typedef struct {
-    // contain the short name for gen/kill and long name for rd
-    Tmps gen[200];
-    int genlen;
-    Tmps kill[200];
-    int killlen;
-    Tmps in[200];
-    int inlen;
-} Meta;
+  // contains the short name for gen, kill and rd
+  tmps gen[200];
+  int genlen;
+  tmps kill[200];
+  int killlen;
+  tmps in[200];
+  int inlen;
+} data;
 
 typedef struct {
-    Blk* key;
-    Meta* value;
-} MapItem;
+  Blk* key;
+  data* value;
+} mapper;
 
-Meta* metas;
-MapItem* metamap;
-int metamaplen = 0;
+data* info;
+mapper* map;
+int map_length = 0;
 
-Meta* getMeta(Blk *needle) {
-    for (int i = 0; i < metamaplen; i++) {
-        if (metamap[i].key == needle) {
-            return metamap[i].value;
-        }
-    }
-    return NULL;
-}
-
-static int findTmpWithShortName(char* short_needle, Tmps* haystack, int hay_len) {
-    for (int index = 0; index<hay_len; index++) {
-        if (strcmp(haystack[index].shortname, short_needle) == 0) {
-            return index;
-        }
-    }
-    return -1;
-}
-
-static int searchTmpFullName(char* full_needle, Tmps* haystack, int hay_len) {
-    for (int index = 0; index<hay_len; index++) {
-        if (strcmp(haystack[index].fullname, full_needle) == 0) {
-            return index;
-        }
-    }
-    return -1;
-}
-
-static Tmps convertTmp(Blk* blk, Tmp t) {
-    Tmps myvar;
-    // for gen/kill analysis
-    sprintf(myvar.shortname, "%s", t.name);
-    // for rd analysis
-    sprintf(myvar.fullname, "@%s%%%s", blk->name, t.name);
-    return myvar;
-}
-
-static bool processBlk(Blk* blk) {
-    bool change = false;
-    // arrays contain to.val
-    Meta* meta = getMeta(blk);
-    Tmps chldin[meta->genlen + meta->inlen];
-    int chldinlen = 0;
-    for (int i=0; i < meta->inlen; i++) {
-        int index = searchTmpFullName(meta->in[i].fullname, meta->kill, meta->killlen);
-        if (index < 0) {
-            // if not found, then this IN var is transitive, send to next blk
-            chldin[chldinlen++] = meta->in[i];
-        }
-    }
-
-    for (int i=0; i < meta->genlen; i++) {
-        chldin[chldinlen++] = meta->gen[i];
-    }
-
-    if (blk->s1) {
-        Blk* lchild = blk->s1;
-        Meta* lmeta = getMeta(lchild);
-        // while we have out genvars add them to next block meta
-        for (int i=0; i < chldinlen; i++) {
-            int index = searchTmpFullName(chldin[i].fullname, lmeta->in, lmeta->inlen);
-            if (index < 0) {
-                // something new
-                lmeta->in[lmeta->inlen++] = chldin[i];
-                change = true;
-            }
-        }
-    }
-
-    if (blk->s2) {
-        Blk* rchild = blk->s2;
-        Meta* rmeta = getMeta(rchild);
-        // while we have out genvars add them to next block meta
-        for (int i=0; i < chldinlen; i++) {
-            int index = searchTmpFullName(chldin[i].fullname, rmeta->in, rmeta->inlen);
-            if (index < 0) {
-                // something new
-                rmeta->in[rmeta->inlen++] = chldin[i];
-                change = true;
-            }
-        }
-    }
-    return change;
-}
-
-static void genKill(Fn* fn) {
-  for (Blk *blk = fn->start; blk; blk = blk->link) {
-    // arrays contain to.val
-    Meta* meta = getMeta(blk);
-
-    for (Ins* i=blk->ins; i-blk->ins < blk->nins; i++) {
-        // if we are assigning to a temporary variable and not elsewhere
-        if (Tmp0 > i->to.val) {
-            continue;
-        }
-        char* s1 = fn->tmp[i->to.val].name;
-        int index = findTmpWithShortName(s1, meta->gen, meta->genlen);
-        if (index >= 0) {
-            // its not unique
-            continue;
-        }
-        meta->gen[meta->genlen++] = convertTmp(blk, fn->tmp[i->to.val]);
-        // then we are GEN the variable in this block
-    }
-
-    // count down from gen_count
-    int k = meta->genlen;
-    while (k-- > 0) {
-        // search where we might be KILL this variable
-        // iterate over all other blocks and instructions
-        Tmps vnew = meta->gen[k];
-        for (Blk *blk_other = fn->start; blk_other; blk_other = blk_other->link) {
-            if (blk_other == blk) {
-                // this is the same block as current
-                continue;
-            }
-            for (Ins* i_other=blk_other->ins; i_other-blk_other->ins < blk_other->nins; i_other++) {
-                if (Tmp0 > i_other->to.val) {
-                    // not a var (assignement)
-                    continue;
-                }
-                Tmps vnew_other = convertTmp(blk_other, fn->tmp[i_other->to.val]);
-                if (strcmp(vnew.shortname, vnew_other.shortname) != 0) {
-                    // the other assignement instruction is for another variable
-                    continue;
-                }
-                int index = searchTmpFullName(vnew_other.fullname, meta->kill, meta->killlen);
-                if (index >= 0) {
-                    // already killed THIS var in THIS block
-                    continue;
-                }
-                meta->kill[meta->killlen++] = convertTmp(blk_other, fn->tmp[i_other->to.val]);
-                // then we killed that instruction, that assigned to the same variable
-            }
-        }
+data* get_info(Blk *block) {
+  for (int i = 0; i < map_length; i++) {
+    if (map[i].key == block) {
+      return map[i].value;
     }
   }
+  return NULL;
+}
 
+static int find_short_name(char* name, tmps* array, int length) {
+  for (int index = 0; index<length; index++) {
+    if (strcmp(array[index].shortname, name) == 0) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+static int find_full_name(char* name, tmps* array, int length) {
+  for (int index = 0; index<length; index++) {
+    if (strcmp(array[index].fullname, name) == 0) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+static tmps format_name(Blk* blk, Tmp t) {
+  tmps variable;
+  // for gen/kill analysis
+  sprintf(variable.shortname, "%s", t.name);
+  // for rd analysis
+  sprintf(variable.fullname, "@%s%%%s", blk->name, t.name);
+  return variable;
+}
+
+static bool parse_blocks(Blk* blk) {
+  bool change = false;
+  // arrays contain to.val
+  data* blk_info = get_info(blk);
+  tmps child_in[blk_info->genlen + blk_info->inlen];
+  int ch_in_len = 0;
+  for (int i=0; i < blk_info->inlen; i++) {
+    int index = find_full_name(blk_info->in[i].fullname, blk_info->kill, blk_info->killlen);
+    if (index < 0) {
+      // if not found, then this IN var is transitive; send it to the next blk
+      child_in[ch_in_len++] = blk_info->in[i];
+    }
+  }
+  
+  for (int i=0; i < blk_info->genlen; i++) {
+    child_in[ch_in_len++] = blk_info->gen[i];
+  }
+  
+  if (blk->s1) {
+    Blk* lchild = blk->s1;
+    data* linfo = get_info(lchild);
+    // while we have out genvars, add them to next block info
+    for (int i=0; i < ch_in_len; i++) {
+      int index = find_full_name(child_in[i].fullname, linfo->in, linfo->inlen);
+      if (index < 0) {
+        // something new
+        linfo->in[linfo->inlen++] = child_in[i];
+        change = true;
+      }
+    }
+  }
+  
+  if (blk->s2) {
+    Blk* rchild = blk->s2;
+    data* rinfo = get_info(rchild);
+    // while we have out genvars, add them to next block info
+    for (int i=0; i < ch_in_len; i++) {
+      int index = find_full_name(child_in[i].fullname, rinfo->in, rinfo->inlen);
+      if (index < 0) {
+        // something new
+        rinfo->in[rinfo->inlen++] = child_in[i];
+        change = true;
+      }
+    }
+  }
+  return change;
+}
+
+static void gen_kill(Fn* fn) {
+  for (Blk *blk = fn->start; blk; blk = blk->link) {
+    // arrays contain to.val
+    data* info = get_info(blk);
+    
+    for (Ins* i=blk->ins; i-blk->ins < blk->nins; i++) {
+      // if we are assigning to a temporary variable
+      if (Tmp0 > i->to.val) {
+        continue;
+      }
+      char* s1 = fn->tmp[i->to.val].name;
+      int index = find_short_name(s1, info->gen, info->genlen);
+      if (index >= 0) {
+        // not unique
+        continue;
+      }
+      // -> gen var in this block
+      info->gen[info->genlen++] = format_name(blk, fn->tmp[i->to.val]);
+    }
+    
+    // gen_count--
+    int k = info->genlen;
+    while (k-- > 0) {
+      // search where we might kill this var
+      // look through all other blocks and instructions
+      tmps vnew = info->gen[k];
+      for (Blk *blk_ = fn->start; blk_; blk_ = blk_->link) {
+        if (blk_ == blk) {
+          // same block
+          continue;
+        }
+        for (Ins* in_=blk_->ins; in_-blk_->ins < blk_->nins; in_++) {
+          if (Tmp0 > in_->to.val) {
+            // not a var
+            continue;
+          }
+          tmps vnew_ = format_name(blk_, fn->tmp[in_->to.val]);
+          if (strcmp(vnew.shortname, vnew_.shortname) != 0) {
+            // the other def is for another variable
+            continue;
+          }
+          int idx = find_full_name(vnew_.fullname, info->kill, info->killlen);
+          if (idx >= 0) {
+            // already killed this var in that block
+            continue;
+          }
+          info->kill[info->killlen++] = format_name(blk_, fn->tmp[in_->to.val]);
+          // then we kill this instruction, that is assigned to the same var
+        }
+      }
+    }
+  }
+  
 }
 
 static void readfn (Fn *fn) {
-  metamap = (MapItem*) malloc(fn->nblk * sizeof(MapItem));
-  metamaplen = fn->nblk;
-  metas = (Meta*) malloc(fn->nblk * sizeof(Meta));
+  map = (mapper*) malloc(fn->nblk * sizeof(mapper));
+  map_length = fn->nblk;
+  info = (data*) malloc(fn->nblk * sizeof(data));
   int mm_i = 0;
   for (Blk* blk = fn->start; blk; blk = blk->link) {
-    // set len of meta to zero
-    metas[mm_i].inlen = 0;
-    metas[mm_i].genlen = 0;
-    metas[mm_i].killlen = 0;
-    // connect meta to block
-    metamap[mm_i].key = blk;
-    metamap[mm_i].value = &metas[mm_i];
+    // set len of info to zero
+    info[mm_i].inlen = 0;
+    info[mm_i].genlen = 0;
+    info[mm_i].killlen = 0;
+    // map info to block
+    map[mm_i].key = blk;
+    map[mm_i].value = &info[mm_i];
     // for every block
     mm_i++;
   }
-
-  genKill(fn);
-
+  
+  gen_kill(fn);
+  
   bool change = true;
   while (change) {
     change = false;
     for (Blk* blk = fn->start; blk; blk = blk->link) {
-        if( processBlk(blk) ) {
-            change = true;
-        }
+      if( parse_blocks(blk) ) {
+        change = true;
+      }
     }
   }
-
+  
   for (Blk* blk = fn->start; blk; blk = blk->link) {
     printf("@%s", blk->name);
     printf("\n\trd_in =");
-    // what have we created and overriden, the final list, this is for the meta of the next block
-    Meta* meta = getMeta(blk);
+    // modified initial list, it is used for info of next block
+    data* meta = get_info(blk);
     for (int i=0; i < meta->inlen; i++) {
-        printf(" %s", meta->in[i].fullname);
+      printf(" %s", meta->in[i].fullname);
     }
     printf("\n");
   }
   printf("\n");
-
-  free(metamap);
-  free(metas);
+  
+  free(map);
+  free(info);
 }
 
 static void readdat (Dat *dat) {
