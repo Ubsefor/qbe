@@ -1,0 +1,39 @@
+export function w $chk(w %t0, w %t1) {
+@l0
+	%x =l alloc4 4
+	storew %t0, %x
+	%y =l alloc4 4
+	storew %t1, %y
+	%b =l alloc8 8
+	%t3 =w loadw %x
+	%t2 =w csltw %t3, 0
+	jnz %t2, @l1, @l6
+@l6
+	%t7 =w loadw %x
+	%t5 =w csltw 7, %t7
+	jnz %t5, @l1, @l5
+@l5
+	%t9 =w loadw %y
+	%t8 =w csltw %t9, 0
+	jnz %t8, @l1, @l4
+@l4
+	%t13 =w loadw %y
+	%t11 =w csltw 7, %t13
+	jnz %t11, @l1, @l2
+@l1
+	ret 0
+@l2
+	%t20 =l loadl %b
+	%t21 =w loadw %x
+	%t22 =l extsw %t21
+	%t23 =l mul 8, %t22
+	%t19 =l add %t20, %t23
+	%t18 =l loadl %t19
+	%t24 =w loadw %y
+	%t25 =l extsw %t24
+	%t26 =l mul 4, %t25
+	%t17 =l add %t18, %t26
+	%t16 =w loadw %t17
+	%t15 =w ceqw %t16, 0
+	ret %t15
+}

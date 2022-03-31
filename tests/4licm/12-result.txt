@@ -1,0 +1,21 @@
+@l0
+	rd_in =
+
+@l1
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
+
+@l2
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
+
+@l4
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
+
+@l5
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
+
+@l6
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
+
+@l3
+	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
+

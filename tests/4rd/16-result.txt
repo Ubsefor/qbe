@@ -1,0 +1,12 @@
+@ret
+	lv_out = 
+@positive
+	lv_out = %a 
+@np_mn
+	lv_out = %a 
+@np
+	lv_out = %a %b 
+@nn
+	lv_out = %a 
+@start
+	lv_out = %a %b %m %n 

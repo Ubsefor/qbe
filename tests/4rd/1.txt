@@ -1,0 +1,12 @@
+function w $main() {
+@start
+    %x =w copy 5
+@loop
+    %x =w mul %x, %x
+    %cond =w csgew %x, 200
+    jnz %cond, @end, @loop
+@end
+    %t =w call $printf(l $fmt, w %x)
+    ret 0
+}
+

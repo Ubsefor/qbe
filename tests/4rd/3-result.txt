@@ -1,0 +1,18 @@
+@l0
+	rd_in =
+
+@l1
+	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%x @l0%y @l0%rnd @l0%n @l0%fx @l0%fy @l0%zx @l0%zy @l0%nx @l0%ny @l0%W @l0%H @l0%col @l0%t7 @l0%t9 @l0%t8 @l0%t6 @l0%t5 @l0%t12 @l0%t4 @l0%t17 @l0%t19 @l0%t18 @l0%t16 @l0%t15 @l0%t22 @l0%t14 @l0%t24 @l0%t26 @l1%t30 @l1%t29 @l2%t36 @l2%t37 @l2%t35 @l2%t39 @l2%t40 @l2%t38 @l2%t34 @l2%t32 @l5%t46 @l5%t47 @l5%t45 @l5%t44 @l5%t51 @l5%t52 @l5%t50 @l5%t49 @l5%t43 @l5%t54 @l5%t42 @l5%t59 @l5%t60 @l5%t58 @l5%t57 @l5%t62 @l5%t56 @l5%t64 @l5%t66 @l5%t68 @l5%t67
+
+@l2
+	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%x @l0%y @l0%rnd @l0%n @l0%fx @l0%fy @l0%zx @l0%zy @l0%nx @l0%ny @l0%W @l0%H @l0%col @l0%t7 @l0%t9 @l0%t8 @l0%t6 @l0%t5 @l0%t12 @l0%t4 @l0%t17 @l0%t19 @l0%t18 @l0%t16 @l0%t15 @l0%t22 @l0%t14 @l0%t24 @l0%t26 @l1%t30 @l1%t29 @l2%t36 @l2%t37 @l2%t35 @l2%t39 @l2%t40 @l2%t38 @l2%t34 @l2%t32 @l5%t46 @l5%t47 @l5%t45 @l5%t44 @l5%t51 @l5%t52 @l5%t50 @l5%t49 @l5%t43 @l5%t54 @l5%t42 @l5%t59 @l5%t60 @l5%t58 @l5%t57 @l5%t62 @l5%t56 @l5%t64 @l5%t66 @l5%t68 @l5%t67
+
+@l4
+	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%x @l0%y @l0%rnd @l0%n @l0%fx @l0%fy @l0%zx @l0%zy @l0%nx @l0%ny @l0%W @l0%H @l0%col @l0%t7 @l0%t9 @l0%t8 @l0%t6 @l0%t5 @l0%t12 @l0%t4 @l0%t17 @l0%t19 @l0%t18 @l0%t16 @l0%t15 @l0%t22 @l0%t14 @l0%t24 @l0%t26 @l1%t30 @l1%t29 @l2%t36 @l2%t37 @l2%t35 @l2%t39 @l2%t40 @l2%t38 @l2%t34 @l2%t32 @l5%t46 @l5%t47 @l5%t45 @l5%t44 @l5%t51 @l5%t52 @l5%t50 @l5%t49 @l5%t43 @l5%t54 @l5%t42 @l5%t59 @l5%t60 @l5%t58 @l5%t57 @l5%t62 @l5%t56 @l5%t64 @l5%t66 @l5%t68 @l5%t67
+
+@l5
+	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%x @l0%y @l0%rnd @l0%n @l0%fx @l0%fy @l0%zx @l0%zy @l0%nx @l0%ny @l0%W @l0%H @l0%col @l0%t7 @l0%t9 @l0%t8 @l0%t6 @l0%t5 @l0%t12 @l0%t4 @l0%t17 @l0%t19 @l0%t18 @l0%t16 @l0%t15 @l0%t22 @l0%t14 @l0%t24 @l0%t26 @l1%t30 @l1%t29 @l2%t36 @l2%t37 @l2%t35 @l2%t39 @l2%t40 @l2%t38 @l2%t34 @l2%t32 @l5%t46 @l5%t47 @l5%t45 @l5%t44 @l5%t51 @l5%t52 @l5%t50 @l5%t49 @l5%t43 @l5%t54 @l5%t42 @l5%t59 @l5%t60 @l5%t58 @l5%t57 @l5%t62 @l5%t56 @l5%t64 @l5%t66 @l5%t68 @l5%t67
+
+@l3
+	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%x @l0%y @l0%rnd @l0%n @l0%fx @l0%fy @l0%zx @l0%zy @l0%nx @l0%ny @l0%W @l0%H @l0%col @l0%t7 @l0%t9 @l0%t8 @l0%t6 @l0%t5 @l0%t12 @l0%t4 @l0%t17 @l0%t19 @l0%t18 @l0%t16 @l0%t15 @l0%t22 @l0%t14 @l0%t24 @l0%t26 @l1%t30 @l1%t29 @l2%t36 @l2%t37 @l2%t35 @l2%t39 @l2%t40 @l2%t38 @l2%t34 @l2%t32 @l5%t46 @l5%t47 @l5%t45 @l5%t44 @l5%t51 @l5%t52 @l5%t50 @l5%t49 @l5%t43 @l5%t54 @l5%t42 @l5%t59 @l5%t60 @l5%t58 @l5%t57 @l5%t62 @l5%t56 @l5%t64 @l5%t66 @l5%t68 @l5%t67
+

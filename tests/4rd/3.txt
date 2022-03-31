@@ -99,3 +99,5 @@ export function w $plot(w %t0, w %t1, w %t2) {
 	%t82 =w call $SDL_RenderDrawPoint(w %t83, w %t84, w %t85, ...)
 	ret 0
 }
+
+

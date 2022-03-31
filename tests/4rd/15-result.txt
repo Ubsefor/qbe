@@ -1,0 +1,11 @@
+@l0
+	lv_out = %i %b
+
+@l1
+	lv_out = %i %b
+
+@l2
+	lv_out = %i %b
+
+@l3
+	lv_out =

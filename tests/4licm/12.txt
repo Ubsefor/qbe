@@ -1,0 +1,43 @@
+export function w $board() {
+@l0
+	%x =l alloc4 4
+	%y =l alloc4 4
+	%b =l alloc8 8
+	storew 0, %y
+@l1
+	%t3 =w loadw %y
+	%t2 =w csltw %t3, 8
+	jnz %t2, @l2, @l3
+@l2
+	storew 0, %x
+@l4
+	%t8 =w loadw %x
+	%t7 =w csltw %t8, 8
+	jnz %t7, @l5, @l6
+@l5
+	%t16 =l loadl %b
+	%t17 =w loadw %x
+	%t18 =l extsw %t17
+	%t19 =l mul 8, %t18
+	%t15 =l add %t16, %t19
+	%t14 =l loadl %t15
+	%t20 =w loadw %y
+	%t21 =l extsw %t20
+	%t22 =l mul 4, %t21
+	%t13 =l add %t14, %t22
+	%t12 =w loadw %t13
+	%t10 =w call $printf(l $glo1, w %t12, ...)
+	%t24 =w loadw %x
+	%t23 =w add %t24, 1
+	storew %t23, %x
+	jmp @l4
+@l6
+	%t25 =w call $printf(l $glo2, ...)
+	%t28 =w loadw %y
+	%t27 =w add %t28, 1
+	storew %t27, %y
+	jmp @l1
+@l3
+	%t29 =w call $printf(l $glo3, ...)
+	ret 0
+}

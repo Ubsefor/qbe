@@ -1,0 +1,25 @@
+export function w $main() {
+@l0
+	%i =l alloc4 4
+	%b =l alloc8 8
+	%t0 =w call $printf(l $glo1, ...)
+	storew 0, %i
+@l1
+	%t5 =w loadw %i
+	%t4 =w csltw %t5, 8
+	jnz %t4, @l2, @l3
+@l2
+	%t8 =w mul 8, 4
+	%t12 =l loadl %b
+	%t13 =w loadw %i
+	%t14 =l extsw %t13
+	%t15 =l mul 4, %t14
+	%t11 =l add %t12, %t15
+	storew %t8, %t11
+	%t17 =w loadw %i
+	%t16 =w add %t17, 1
+	storew %t16, %i
+	jmp @l1
+@l3
+	ret 0
+}

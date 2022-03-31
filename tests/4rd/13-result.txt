@@ -1,0 +1,17 @@
+@l0
+	lv_out = %x %y %b
+
+@l6
+	lv_out = %y %x %b
+
+@l5
+	lv_out = %y %x %b
+
+@l4
+	lv_out = %y %x %b
+
+@l1
+	lv_out =
+
+@l2
+	lv_out =

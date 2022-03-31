@@ -1,0 +1,12 @@
+@start
+	rd_in = 
+@nn
+	rd_in = @start%a @start%b @start%cmp1 @start%m @start%n 
+@np
+	rd_in = @start%a @start%b @start%cmp1 @start%m @start%n 
+@np_mn
+	rd_in = @np%cmp2 @start%a @start%b @start%cmp1 @start%m @start%n 
+@positive
+	rd_in = @nn%n @np%cmp2 @start%a @start%b @start%cmp1 @start%m @start%n 
+@ret
+	rd_in = @nn%n @np%cmp2 @np_mn%a @positive%a @start%b @start%cmp1 @start%m @start%n 

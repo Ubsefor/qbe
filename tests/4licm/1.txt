@@ -9,3 +9,4 @@ function w $main() {
     %t =w call $printf(l $fmt, w %x)
     ret 0
 }
+
