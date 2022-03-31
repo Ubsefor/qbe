@@ -82,11 +82,11 @@ static bool parse_blocks(Blk* blk) {
       child_in[ch_in_len++] = blk_info->in[i];
     }
   }
-  
+
   for (int i=0; i < blk_info->genlen; i++) {
     child_in[ch_in_len++] = blk_info->gen[i];
   }
-  
+
   if (blk->s1) {
     Blk* lchild = blk->s1;
     data* linfo = get_info(lchild);
@@ -100,7 +100,7 @@ static bool parse_blocks(Blk* blk) {
       }
     }
   }
-  
+
   if (blk->s2) {
     Blk* rchild = blk->s2;
     data* rinfo = get_info(rchild);
@@ -121,7 +121,7 @@ static void gen_kill(Fn* fn) {
   for (Blk *blk = fn->start; blk; blk = blk->link) {
     // arrays contain to.val
     data* info = get_info(blk);
-    
+
     for (Ins* i=blk->ins; i-blk->ins < blk->nins; i++) {
       // if we are assigning to a temporary variable
       if (Tmp0 > i->to.val) {
@@ -136,7 +136,7 @@ static void gen_kill(Fn* fn) {
       // -> gen var in this block
       info->gen[info->genlen++] = format_name(blk, fn->tmp[i->to.val]);
     }
-    
+
     // gen_count--
     int k = info->genlen;
     while (k-- > 0) {
@@ -169,7 +169,7 @@ static void gen_kill(Fn* fn) {
       }
     }
   }
-  
+
 }
 
 static void readfn (Fn *fn) {
@@ -188,9 +188,9 @@ static void readfn (Fn *fn) {
     // for every block
     mm_i++;
   }
-  
+
   gen_kill(fn);
-  
+
   bool change = true;
   while (change) {
     change = false;
@@ -200,7 +200,7 @@ static void readfn (Fn *fn) {
       }
     }
   }
-  
+
   for (Blk* blk = fn->start; blk; blk = blk->link) {
     printf("@%s", blk->name);
     printf("\n\trd_in =");
@@ -212,7 +212,7 @@ static void readfn (Fn *fn) {
     printf("\n");
   }
   printf("\n");
-  
+
   free(map);
   free(info);
 }
