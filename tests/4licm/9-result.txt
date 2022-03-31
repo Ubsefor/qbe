@@ -1,18 +1,23 @@
-@l0
-	rd_in =
-
-@l1
-	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%t3 @l0%ac @l0%av @l0%Q @l0%N @l0%i @l0%t @l0%t8 @l0%t6
-
-@l2
-	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%t3 @l0%ac @l0%av @l0%Q @l0%N @l0%i @l0%t @l0%t8 @l0%t6 @l1%t13 @l1%t12 @l1%t11 @l1%t10
-
-@l4
-	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%t3 @l0%ac @l0%av @l0%Q @l0%N @l0%i @l0%t @l0%t8 @l0%t6 @l1%t13 @l1%t12 @l1%t11 @l1%t10 @l4%t18 @l4%t19 @l4%t17 @l5%t22 @l5%t21 @l5%t25 @l5%t26 @l5%t27 @l5%t28 @l5%t24 @l5%t30 @l5%t29
-
-@l5
-	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%t3 @l0%ac @l0%av @l0%Q @l0%N @l0%i @l0%t @l0%t8 @l0%t6 @l1%t13 @l1%t12 @l1%t11 @l1%t10 @l4%t18 @l4%t19 @l4%t17 @l5%t22 @l5%t21 @l5%t25 @l5%t26 @l5%t27 @l5%t28 @l5%t24 @l5%t30 @l5%t29
-
-@l6
-	rd_in = @l0%t0 @l0%t1 @l0%t2 @l0%t3 @l0%ac @l0%av @l0%Q @l0%N @l0%i @l0%t @l0%t8 @l0%t6 @l1%t13 @l1%t12 @l1%t11 @l1%t10 @l4%t18 @l4%t19 @l4%t17 @l5%t22 @l5%t21 @l5%t25 @l5%t26 @l5%t27 @l5%t28 @l5%t24 @l5%t30 @l5%t29
-
+export function $foo() {
+@start
+	%x.2 =w copy 1
+@prehead@d0
+	%y.3 =w copy %x.2
+	%k.4 =w copy 1
+	%z.5 =w add %x.2, %y.3
+	%y.1 =w add %z.5, 1
+@d0
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %y.3, @d3, @d4
+@d3
+	jmp @d5
+@d4
+@d5
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}

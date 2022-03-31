@@ -1,21 +1,54 @@
-@l0
-	rd_in =
-
-@l1
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
-
-@l2
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
-
-@l4
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
-
-@l5
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
-
-@l6
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23 @l6%t25 @l6%t28 @l6%t27
-
-@l3
-	rd_in = @l0%x @l0%y @l0%b @l1%t3 @l1%t2 @l4%t8 @l4%t7 @l6%t25 @l6%t28 @l6%t27 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l5%t10 @l5%t24 @l5%t23
-
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.5 =w copy %x
+	%k.6 =w copy 1
+	%z.7 =w add %x, %y.5
+	%l.1 =w copy 1
+	%m.8 =w copy 1
+	%a.9 =w copy 1
+	%b.10 =w copy 1
+@prehead@d0
+	%l.2 =w add %y.5, 1
+	%m.26 =w add %y.5, 1
+	%l.3 =w add %y.5, 1
+	%m.23 =w add %y.5, 1
+	%s =w add %y.5, 1
+@d0
+	%b.11 =w phi @start %b.10, @d5 %b.19, @d4 %b.11
+	%a.12 =w phi @start %a.9, @d5 %a.12, @d4 %a.20
+	%m.13 =w phi @start %m.8, @d5 %m.16, @d4 %m.16
+	%z.14 =w phi @start %z.7, @d5 %z.17, @d4 %z.17
+	%k.15 =w phi @start %k.6, @d5 %k.18, @d4 %k.18
+	%m.4 =w add %m.13, 1
+	jnz %z.14, @prehead@d1, @prehead@d2
+@prehead@d1
+	%q =w add %z.14, 1
+@d1
+	%k.24 =w phi @d0 %k.15, @d1 %k.25
+	%k.25 =w add %k.24, 1
+	jnz %k.25, @d1, @d3
+@prehead@d2
+	%v =w add %k.15, 1
+@d2
+	%z.21 =w phi @d0 %z.14, @d2 %z.22
+	%z.22 =w add %z.21, 1
+	jnz %k.15, @d2, @d3
+@d3
+	%m.16 =w phi @d2 %m.23, @d1 %m.26
+	%z.17 =w phi @d2 %z.22, @d1 %z.14
+	%k.18 =w phi @d2 %k.15, @d1 %k.25
+	%f =w add %z.17, %y.5
+	%t =w add %k.18, %y.5
+	jnz %f, @d4, @d5
+@d4
+	%a.20 =w add %a.12, 1
+	%e =w add %b.11, 1
+	jnz %k.18, @d0, @end
+@d5
+	%b.19 =w add %b.11, 1
+	%n =w add %a.12, 1
+	jnz %z.17, @d0, @end
+@end
+	ret0
+}

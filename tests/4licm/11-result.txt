@@ -1,44 +1,30 @@
-@l0
-	rd_in =
-
-@l1
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l6%t55 @l6%t54 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50
-
-@l2
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l6%t55 @l6%t54 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50
-
-@l4
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50 @l6%t55 @l6%t54
-
-@l5
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50 @l6%t55 @l6%t54
-
-@l7
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l11%t51 @l11%t50 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l8
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l11%t51 @l11%t50 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l10
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l11%t51 @l11%t50 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l16
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l11%t51 @l11%t50 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l13
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l11%t51 @l11%t50 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l14
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l11%t51 @l11%t50 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l11
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l11%t51 @l11%t50 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l9
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l11%t51 @l11%t50 @l9%t53 @l9%t52 @l6%t55 @l6%t54
-
-@l6
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50 @l6%t55 @l6%t54
-
-@l3
-	rd_in = @l0%i @l0%a @l0%b @l0%c @l0%d @l1%t3 @l1%t2 @l2%t7 @l2%t6 @l4%t10 @l4%t9 @l6%t55 @l6%t54 @l5%t15 @l5%t16 @l5%t14 @l5%t18 @l5%t19 @l5%t17 @l5%t13 @l7%t23 @l7%t22 @l8%t27 @l8%t28 @l8%t26 @l8%t29 @l8%t25 @l10%t31 @l10%t33 @l10%t34 @l10%t32 @l16%t38 @l16%t39 @l16%t37 @l16%t40 @l16%t36 @l16%t35 @l9%t53 @l9%t52 @l11%t51 @l11%t50
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.6 =w copy %x
+	%k.7 =w copy 1
+	%z.8 =w add %x, %y.6
+	%l.1 =w copy 1
+	%m.9 =w copy 1
+@prehead@d0
+	%l.2 =w add %y.6, 1
+	%l.3 =w add %y.6, 1
+@d0
+	%m.10 =w phi @start %m.9, @d2 %m.13, @d1 %m.13
+	%z.11 =w phi @start %z.8, @d2 %z.14, @d1 %z.11
+	%k.12 =w phi @start %k.7, @d2 %k.12, @d1 %k.15
+	%m.13 =w add %m.10, 1
+	jnz %z.11, @d1, @d2
+@d1
+	%k.15 =w add %k.12, 1
+	%u =w add %z.11, 1
+	%t.4 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@d2
+	%z.14 =w add %z.11, 1
+	%v =w add %k.12, 1
+	%t.5 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@end
+	ret0
+}

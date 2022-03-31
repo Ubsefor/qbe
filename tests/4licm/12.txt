@@ -1,43 +1,41 @@
-export function w $board() {
-@l0
-	%x =l alloc4 4
-	%y =l alloc4 4
-	%b =l alloc8 8
-	storew 0, %y
-@l1
-	%t3 =w loadw %y
-	%t2 =w csltw %t3, 8
-	jnz %t2, @l2, @l3
-@l2
-	storew 0, %x
-@l4
-	%t8 =w loadw %x
-	%t7 =w csltw %t8, 8
-	jnz %t7, @l5, @l6
-@l5
-	%t16 =l loadl %b
-	%t17 =w loadw %x
-	%t18 =l extsw %t17
-	%t19 =l mul 8, %t18
-	%t15 =l add %t16, %t19
-	%t14 =l loadl %t15
-	%t20 =w loadw %y
-	%t21 =l extsw %t20
-	%t22 =l mul 4, %t21
-	%t13 =l add %t14, %t22
-	%t12 =w loadw %t13
-	%t10 =w call $printf(l $glo1, w %t12, ...)
-	%t24 =w loadw %x
-	%t23 =w add %t24, 1
-	storew %t23, %x
-	jmp @l4
-@l6
-	%t25 =w call $printf(l $glo2, ...)
-	%t28 =w loadw %y
-	%t27 =w add %t28, 1
-	storew %t27, %y
-	jmp @l1
-@l3
-	%t29 =w call $printf(l $glo3, ...)
-	ret 0
+export function w $foo() {
+@start
+	%x =w copy 1
+	%y =w copy %x
+	%k =w copy 1
+	%z =w add %x, %y
+	%l =w copy 1
+	%m =w copy 1
+	%a =w copy 1
+	%b =w copy 1
+@d0
+	%m =w add %m,1
+	jnz %z,@d1,@d2
+@d1
+	%k =w add %k, 1
+	%q =w add %z, 1
+	%l =w add %y, 1
+	%m =w add %y, 1
+	jnz %k,@d1, @d3
+@d2
+	%v =w add %k,1
+	%z =w add %z, 1
+	%l =w add %y, 1
+	%m =w add %y, 1
+	jnz %k,@d2, @d3
+@d3
+	%f =w add %z, %y
+	%t =w add %k, %y
+	%s =w add %y, 1
+	jnz %f, @d4,@d5
+@d4
+	%a =w add %a,1
+	%e =w add %b,1
+	jnz %k,@d0,@end
+@d5
+	%b =w add %b,1
+	%n =w add %a,1
+	jnz %z,@d0,@end
+@end
+ret
 }

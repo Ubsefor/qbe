@@ -1,73 +1,18 @@
-export function w $go(w %t0, w %t1, l %t2, w %t3) {
-@l0
-	%y =l alloc4 4
-	storew %t0, %y
-	%Q =l alloc4 4
-	storew %t1, %Q
-	%t =l alloc8 8
-	storel %t2, %t
-	%N =l alloc4 4
-	storew %t3, %N
-	%x =l alloc4 4
-	%t5 =w loadw %y
-	%t6 =w loadw %Q
-	%t4 =w ceqw %t5, %t6
-	jnz %t4, @l1, @l2
-@l1
-	%t7 =w call $print(...)
-	%t9 =w loadw %N
-	%t8 =w add %t9, 1
-	storew %t8, %N
-	ret 0
-@l2
-	storew 0, %x
-@l4
-	%t14 =w loadw %x
-	%t15 =w loadw %Q
-	%t13 =w csltw %t14, %t15
-	jnz %t13, @l5, @l6
-@l5
-	%t18 =w loadw %x
-	%t19 =w loadw %y
-	%t17 =w call $chk(w %t18, w %t19, ...)
-	%t16 =w ceqw %t17, 0
-	jnz %t16, @l7, @l8
-@l7
-	%t25 =l loadl %t
-	%t26 =w loadw %x
-	%t27 =l extsw %t26
-	%t28 =l mul 8, %t27
-	%t24 =l add %t25, %t28
-	%t23 =l loadl %t24
-	%t29 =w loadw %y
-	%t30 =l extsw %t29
-	%t31 =l mul 4, %t30
-	%t22 =l add %t23, %t31
-	%t32 =w loadw %t22
-	%t21 =w add %t32, 1
-	storew %t21, %t22
-	%t35 =w loadw %y
-	%t34 =w add %t35, 1
-	%t33 =w call $go(w %t34, ...)
-	%t41 =l loadl %t
-	%t42 =w loadw %x
-	%t43 =l extsw %t42
-	%t44 =l mul 8, %t43
-	%t40 =l add %t41, %t44
-	%t39 =l loadl %t40
-	%t45 =w loadw %y
-	%t46 =l extsw %t45
-	%t47 =l mul 4, %t46
-	%t38 =l add %t39, %t47
-	%t48 =w loadw %t38
-	%t37 =w sub %t48, 1
-	storew %t37, %t38
-@l8
-	%t50 =w loadw %x
-	%t49 =w add %t50, 1
-	storew %t49, %x
-	jmp @l4
-@l6
-	ret 0
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy 1
+@d0
+%x =w add %x,1
+@d1
+%z =w add %y, 1
+jnz %z, @d0, @next
+@next
+@d2
+%x =w add %x,1
+@d3
+%z =w add %y, 1
+jnz %z, @d2, @end
+@end
+ret
 }
-

@@ -1,12 +1,11 @@
-function w $main() {
+export function w $foo() {
 @start
-    %x =w copy 5
-@loop
-    %x =w mul %x, %x
-    %cond =w csgew %x, 200
-    jnz %cond, @end, @loop
+    %x =w copy 1
+@d0
+    %y =w copy %x
+@d1
+    %z =w add %x, %y
+    jnz %z, @d0, @end
 @end
-    %t =w call $printf(l $fmt, w %x)
-    ret 0
+    ret
 }
-

@@ -1,48 +1,21 @@
-export function w $main(w %t0, l %t1, w %t2, w %t3) {
-@l0
-	%ac =l alloc4 4
-	storew %t0, %ac
-	%av =l alloc8 8
-	storel %t1, %av
-	%Q =l alloc4 4
-	storew %t2, %Q
-	%N =l alloc4 4
-	storew %t3, %N
-	%i =l alloc4 4
-	%t =l alloc8 8
-	storew 8, %Q
-	%t8 =w loadw %ac
-	%t6 =w cslew 2, %t8
-	jnz %t6, @l1, @l2
-@l1
-	%t13 =l loadl %av
-	%t12 =l add %t13, 8
-	%t11 =l loadl %t12
-	%t10 =w call $atoi(l %t11, ...)
-	storew %t10, %Q
-@l2
-	storew 0, %i
-@l4
-	%t18 =w loadw %i
-	%t19 =w loadw %Q
-	%t17 =w csltw %t18, %t19
-	jnz %t17, @l5, @l6
-@l5
-	%t22 =w loadw %Q
-	%t21 =w mul %t22, 4
-	%t25 =l loadl %t
-	%t26 =w loadw %i
-	%t27 =l extsw %t26
-	%t28 =l mul 4, %t27
-	%t24 =l add %t25, %t28
-	storew %t21, %t24
-	%t30 =w loadw %i
-	%t29 =w add %t30, 1
-	storew %t29, %i
-	jmp @l4
-@l6
-	%t31 =w call $go(w 0, ...)
-	%t35 =w loadw %N
-	%t33 =w call $printf(l $glo1, w %t35, ...)
-	ret 0
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%y =w copy %x
+%k =w copy 1
+%z =w add %x, %y
+@d1
+%k =w add %k, 1
+jnz %k, @d1,@d2
+@d2
+jnz %y, @d3, @d4
+@d3
+jmp @d5
+@d4
+%y =w add %z, 1
+@d5
+jnz %z, @d0, @end
+@end
+ret
 }

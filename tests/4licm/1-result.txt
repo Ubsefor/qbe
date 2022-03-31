@@ -1,9 +1,12 @@
+export function $foo() {
 @start
-	rd_in =
-
-@loop
-	rd_in = @start%x @loop%x @loop%cond
-
+	%x.1 =w copy 1
+@prehead@d0
+	%y.2 =w copy %x.1
+	%z =w add %x.1, %y.2
+@d0
+@d1
+	jnz %z, @d0, @end
 @end
-	rd_in = @loop%x @loop%cond
-
+	ret0
+}

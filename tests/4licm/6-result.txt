@@ -1,30 +1,19 @@
-@l0
-	rd_in =
-
-@l1
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l6%t29 @l6%t32 @l6%t31 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27
-
-@l2
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l6%t29 @l6%t32 @l6%t31 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27
-
-@l4
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l5
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l7
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l8
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l9
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l6
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27 @l6%t29 @l6%t32 @l6%t31
-
-@l3
-	rd_in = @l0%t0 @l0%t1 @l0%Q @l0%t @l0%x @l0%y @l1%t5 @l1%t6 @l1%t4 @l4%t10 @l4%t11 @l4%t9 @l6%t29 @l6%t32 @l6%t31 @l5%t16 @l5%t17 @l5%t18 @l5%t19 @l5%t15 @l5%t14 @l5%t20 @l5%t21 @l5%t22 @l5%t13 @l5%t12 @l7%t23 @l8%t25 @l9%t28 @l9%t27
-
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%k.2 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.5 =w add %x.1, %y
+@d0
+	%k.3 =w phi @start %k.2, @d2 %k.7
+	%k.4 =w add %k.3, 1
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}

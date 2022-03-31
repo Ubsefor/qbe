@@ -1,55 +1,16 @@
-export function w $print(w %t0, l %t1) {
-@l0
-	%Q =l alloc4 4
-	storew %t0, %Q
-	%t =l alloc8 8
-	storel %t1, %t
-	%x =l alloc4 4
-	%y =l alloc4 4
-	storew 0, %y
-@l1
-	%t5 =w loadw %y
-	%t6 =w loadw %Q
-	%t4 =w csltw %t5, %t6
-	jnz %t4, @l2, @l3
-@l2
-	storew 0, %x
-@l4
-	%t10 =w loadw %x
-	%t11 =w loadw %Q
-	%t9 =w csltw %t10, %t11
-	jnz %t9, @l5, @l6
-@l5
-	%t16 =l loadl %t
-	%t17 =w loadw %x
-	%t18 =l extsw %t17
-	%t19 =l mul 8, %t18
-	%t15 =l add %t16, %t19
-	%t14 =l loadl %t15
-	%t20 =w loadw %y
-	%t21 =l extsw %t20
-	%t22 =l mul 4, %t21
-	%t13 =l add %t14, %t22
-	%t12 =w loadw %t13
-	jnz %t12, @l7, @l8
-@l7
-	%t23 =w call $printf(l $glo1, ...)
-	jmp @l9
-@l8
-	%t25 =w call $printf(l $glo2, ...)
-@l9
-	%t28 =w loadw %x
-	%t27 =w add %t28, 1
-	storew %t27, %x
-	jmp @l4
-@l6
-	%t29 =w call $printf(l $glo3, ...)
-	%t32 =w loadw %y
-	%t31 =w add %t32, 1
-	storew %t31, %y
-	jmp @l1
-@l3
-	%t33 =w call $printf(l $glo4, ...)
-	ret 0
+export function w $foo() {
+@start
+	%x =w copy 1
+	%k =w copy 1
+@d0
+	%y =w copy %x
+	%k =w add %k,1
+	%z =w add %x, %y
+@d1
+	%k =w add %k, 1
+	jnz %k, @d1,@d2
+@d2
+	jnz %z, @d0, @end
+@end
+	ret
 }
-

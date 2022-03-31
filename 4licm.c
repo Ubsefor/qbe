@@ -42,15 +42,15 @@ info_arr_t init_array(void) {
 }
 
 // check if opcode is among invars
-int is_invar_opc(info_arr_t array, Ins *ins) {
+bool is_invar_opc(info_arr_t array, Ins *ins) {
   for (int i = 0; i < array.size; i++) {
     invar_opcode_t info = array.values[i];
 
     if (info.block->ins + info.opcode_idx == ins)
-      return 1;
+      return true;
   }
 
-  return 0;
+  return false;
 }
 
 // add to array of invar blocks
@@ -79,18 +79,18 @@ blk_arr_t init_blk_arr(void) {
 }
 
 // check if block present in array
-int blk_present(blk_arr_t array, Blk *blk) {
+bool blk_present(blk_arr_t array, Blk *blk) {
   for (int i = 0; i < array.size; i++)
     if (array.blocks[i] == blk)
-      return 1;
+      return true;
 
-  return 0;
+  return false;
 }
 
 // add block to block array
-int join_blk_arr(blk_arr_t *array, Blk *blk) {
+bool join_blk_arr(blk_arr_t *array, Blk *blk) {
   if (blk_present(*array, blk))
-    return 0;
+    return false;
 
   array->blocks[array->size] = blk;
 
@@ -104,12 +104,12 @@ int join_blk_arr(blk_arr_t *array, Blk *blk) {
     array->blocks = (Blk **) realloc(array->blocks, array->length * sizeof(Blk *));
   }
 
-  return 1;
+  return true;
 }
 
 // check if arc exists b/w blocks
 
-int is_fwd_edge(Blk *a, Blk *b) {
+bool is_fwd_edge(Blk *a, Blk *b) {
   assert(a->s1 == b || a->s2 == b);
 
   if (a->id && b->id)
@@ -118,13 +118,13 @@ int is_fwd_edge(Blk *a, Blk *b) {
   return a->id == 0;
 }
 
-int is_back_edge(Blk *a, Blk *b) {
+bool is_back_edge(Blk *a, Blk *b) {
   assert(a->s1 == b || a->s2 == b);
 
   if (a->id && b->id)
     return a->id >= b->id;
 
-  return 0;
+  return false;
 }
 
 // get invars
@@ -149,46 +149,46 @@ int check_mult_defs(Fn *fn, blk_arr_t blocks, Ref arg) {
 }
 
 // check if reaching definition is in loop
-int is_def_in_loop(blk_arr_t blocks, Ref arg) {
+bool is_def_in_loop(blk_arr_t blocks, Ref arg) {
   for (int i = 0; i < blocks.size; i++)
     for (int j = 0; j < blocks.blocks[i]->nins; j++)
       if (blocks.blocks[i]->ins[j].to.val == arg.val)
-        return 1;
+        return true;
 
-  return 0; // ¿no definitions?
+  return false; // ¿no definitions?
 }
 
 // rd is marked as invar
-int is_def_invar(info_arr_t invar_opc_arr, Ref arg) {
+bool is_def_invar(info_arr_t invar_opc_arr, Ref arg) {
   for (int i = 0; i < invar_opc_arr.size; i++) {
     invar_opcode_t info = invar_opc_arr.values[i];
 
     if (arg.val == info.block->ins[info.opcode_idx].to.val)
-      return 1;
+      return true;
   }
 
-  return 0;
+  return false;
 }
 
 // check if arg is invar
-int is_arg_invar(Fn *fn, blk_arr_t blocks, info_arr_t invar_opc_arr, Ref arg, Blk *blk) {
+bool is_arg_invar(Fn *fn, blk_arr_t blocks, info_arr_t invar_opc_arr, Ref arg, Blk *blk) {
   // константа инвариантна
   if (arg.type == RCon)
-    return 1;
+    return true;
 
   // not invar if theres multiple rd and one is inside loop
   int phi = check_mult_defs(fn, blocks, arg);
 
   if (phi == 1) // several rd
-    return 1;
+    return true;
 
   if (phi == 0) // several rd, 1 in a loop
-    return 0;
+    return false;
   // exists 1 rd
 
   // var is invar, if theres no its def in a loop
   if (!is_def_in_loop(blocks, arg))
-    return 1;
+    return true;
 
   // var is defined by opcode in a loop
 
@@ -197,19 +197,19 @@ int is_arg_invar(Fn *fn, blk_arr_t blocks, info_arr_t invar_opc_arr, Ref arg, Bl
 }
 
 // check that opcode is a loop invar
-int is_new_invar(Fn *fn, blk_arr_t blocks, info_arr_t invar_opc_arr, Ins *ins, Blk *blk) {
+bool is_new_invar(Fn *fn, blk_arr_t blocks, info_arr_t invar_opc_arr, Ins *ins, Blk *blk) {
   // not a new invar if already marked as invar
   if (is_invar_opc(invar_opc_arr, ins))
-    return 0;
+    return false;
 
   // opcode is invar if both args are invars
   if (!is_arg_invar(fn, blocks, invar_opc_arr, ins->arg[0], blk))
-    return 0;
+    return false;
 
   if (!is_arg_invar(fn, blocks, invar_opc_arr, ins->arg[1], blk))
-    return 0;
+    return false;
 
-  return 1;
+  return true;
 }
 
 // collect all invars inside a loop
@@ -317,44 +317,44 @@ Blk* make_prehead(Fn *fn, Blk *first) {
 // moving of invar opcodes
 
 // if def is in block that is dom of all loop exits – it can be moved
-int dom_exits(blk_arr_t blocks, Blk *block) {
+bool dom_exists(blk_arr_t blocks, Blk *block) {
   for (int i = 0; i < blocks.size; i++) {
     // skip blocks w/o loop exits
     if (!blocks.blocks[i]->s2 || blk_present(blocks, blocks.blocks[i]->s2))
       continue;
 
     if (!dom(block, blocks.blocks[i]))
-      return 0;
+      return false;
   }
 
-  return 1;
+  return true;
 }
 
 // check if var is in use after loop
-int is_used_after_loop(Fn *fn, uint max_id, int val) {
+bool is_used_after_loop(Fn *fn, uint max_id, int val) {
   for (int i = 0; i < fn->tmp[val].nuse; i++)
     if (fn->tmp[val].use[i].bid > max_id)
-      return 1;
+      return true;
 
-  return 0;
+  return false;
 }
 
 // check if opcode can be moved
-int can_move(Fn *fn, invar_opcode_t info, blk_arr_t blocks) {
+bool can_move(Fn *fn, invar_opcode_t info, blk_arr_t blocks) {
   Ins *ins = info.block->ins + info.opcode_idx;
 
   // def cant be moved if loop has another def of this var,
   // but ssa makes these defs independent, so theres no need to check it here
 
   // def can be moved if its in a block that doms all loop exits
-  if (dom_exits(blocks, info.block))
-    return 1;
+  if (dom_exists(blocks, info.block))
+    return true;
 
   // ... or if it is killed after loop (theres no futher uses)
   if (!is_used_after_loop(fn, blocks.max_id, ins->to.val))
-    return 1;
+    return true;
 
-  return 0;
+  return false;
 }
 
 // move invar opcodes
