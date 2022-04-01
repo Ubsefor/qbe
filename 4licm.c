@@ -433,7 +433,6 @@ void parse_loop(Fn *fn, Blk *first, Blk *last, blk_arr_t blocks) {
   // find invar opcodes
   info_arr_t invar_opc_arr = get_invar_opcodes(fn, blocks);
   
-  // вставляем и заполняем предзаголовок только если есть инварианты
   // insert and fill a preheader if there are invars
   if (invar_opc_arr.size) {
     Blk *prehead = make_prehead(fn, first);
