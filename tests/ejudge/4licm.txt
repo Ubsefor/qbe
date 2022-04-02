@@ -1,0 +1,1157 @@
+====== Test #1 =======
+--- Input: size 115 ---
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%y =w copy %x
+@d1
+%z =w add %x, %y
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 141 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@prehead@d0
+	%y.2 =w copy %x.1
+	%z =w add %x.1, %y.2
+@d0
+@d1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 141 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@prehead@d0
+	%y.2 =w copy %x.1
+	%z =w add %x.1, %y.2
+@d0
+@d1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=4, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=2 }
+checker: { utime=0, stime=0, ptime=0, rtime=22, maxvsz=0, maxrss=1814528, nvcsw=2, nivcsw=1 }
+
+====== Test #2 =======
+--- Input: size 116 ---
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%x =w add %x, 1
+@d1
+%z =w add %x, 1
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 163 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@d0
+	%x.2 =w phi @start %x.1, @d1 %x.3
+	%x.3 =w add %x.2, 1
+@d1
+	%z =w add %x.3, 1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 163 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@d0
+	%x.2 =w phi @start %x.1, @d1 %x.3
+	%x.3 =w add %x.2, 1
+@d1
+	%z =w add %x.3, 1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #3 =======
+--- Input: size 128 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy 1
+@d0
+%x =w add %x,1
+@d1
+%z =w add %y, 1
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 191 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%y.2 =w copy 1
+@prehead@d0
+	%z =w add %y.2, 1
+@d0
+	%x.3 =w phi @start %x.1, @d1 %x.4
+	%x.4 =w add %x.3, 1
+@d1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 191 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%y.2 =w copy 1
+@prehead@d0
+	%z =w add %y.2, 1
+@d0
+	%x.3 =w phi @start %x.1, @d1 %x.4
+	%x.4 =w add %x.3, 1
+@d1
+	jnz %z, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=2 }
+
+====== Test #4 =======
+--- Input: size 148 ---
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%y =w copy %x
+%z =w add %x, %y
+@d1
+%k =w copy 1
+jnz %k, @d1,@d2
+@d2
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 177 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@prehead@d0
+	%k =w copy 1
+	%y =w copy %x.1
+	%z.2 =w add %x.1, %y
+@d0
+@d1
+	jnz %k, @d1, @d2
+@d2
+	jnz %z.2, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 177 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.2 =w add %x.1, %y
+	%k =w copy 1
+@d0
+@d1
+	jnz %k, @d1, @d2
+@d2
+	jnz %z.2, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=25468928, maxrss=1748992, nvcsw=1, nivcsw=2 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #5 =======
+--- Input: size 179 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%k =w copy 1
+@d0
+%k =w add %k,1
+%y =w copy %x
+%z =w add %x, %y
+@d1
+%l =w add %k, 1
+jnz %k, @d1,@d2
+@d2
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 268 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%k.2 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.5 =w add %x.1, %y
+@d0
+	%k.3 =w phi @start %k.2, @d2 %k.4
+	%k.4 =w add %k.3, 1
+@prehead@d1
+	%l =w add %k.4, 1
+@d1
+	jnz %k.4, @d1, @d2
+@d2
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 268 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%k.2 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.5 =w add %x.1, %y
+@d0
+	%k.3 =w phi @start %k.2, @d2 %k.4
+	%k.4 =w add %k.3, 1
+@prehead@d1
+	%l =w add %k.4, 1
+@d1
+	jnz %k.4, @d1, @d2
+@d2
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=2 }
+checker: { utime=0, stime=0, ptime=0, rtime=2, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #6 =======
+--- Input: size 179 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%k =w copy 1
+@d0
+%y =w copy %x
+%k =w add %k,1
+%z =w add %x, %y
+@d1
+%k =w add %k, 1
+jnz %k, @d1,@d2
+@d2
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 290 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%k.2 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.5 =w add %x.1, %y
+@d0
+	%k.3 =w phi @start %k.2, @d2 %k.7
+	%k.4 =w add %k.3, 1
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 290 ---
+export function $foo() {
+@start
+	%x.1 =w copy 1
+	%k.2 =w copy 1
+@prehead@d0
+	%y =w copy %x.1
+	%z.5 =w add %x.1, %y
+@d0
+	%k.3 =w phi @start %k.2, @d2 %k.7
+	%k.4 =w add %k.3, 1
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=2 }
+
+====== Test #7 =======
+--- Input: size 167 ---
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%x =w add %x, 1
+jnz %x, @d1, @d2
+@d1
+%y =w copy 0
+jmp @d3
+@d2
+%y =w copy 1
+jmp @d3
+@d3
+jnz %x, @d0, @end
+@end
+ret
+}
+
+--- Output: size 227 ---
+export function $foo() {
+@start
+	%x.3 =w copy 1
+@prehead@d0
+	%y.1 =w copy 0
+	%y.2 =w copy 1
+@d0
+	%x.4 =w phi @start %x.3, @d3 %x.5
+	%x.5 =w add %x.4, 1
+	jnz %x.5, @d1, @d2
+@d1
+	jmp @d3
+@d2
+@d3
+	jnz %x.5, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 227 ---
+export function $foo() {
+@start
+	%x.3 =w copy 1
+@prehead@d0
+	%y.1 =w copy 0
+	%y.2 =w copy 1
+@d0
+	%x.4 =w phi @start %x.3, @d3 %x.5
+	%x.5 =w add %x.4, 1
+	jnz %x.5, @d1, @d2
+@d1
+	jmp @d3
+@d2
+@d3
+	jnz %x.5, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=25550848, maxrss=1748992, nvcsw=1, nivcsw=2 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #8 =======
+--- Input: size 192 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy 1
+@d0
+%x =w add %x,1
+@d1
+%z =w add %y, 1
+jnz %z, @d0, @next
+@next
+@d2
+%x =w add %x,1
+@d3
+%z =w add %y, 1
+jnz %z, @d2, @end
+@end
+ret
+}
+
+--- Output: size 319 ---
+export function $foo() {
+@start
+	%x.3 =w copy 1
+	%y.4 =w copy 1
+@prehead@d0
+	%z.1 =w add %y.4, 1
+@d0
+	%x.5 =w phi @start %x.3, @d1 %x.6
+	%x.6 =w add %x.5, 1
+@d1
+	jnz %z.1, @d0, @next
+@next
+@prehead@d2
+	%z.2 =w add %y.4, 1
+@d2
+	%x.7 =w phi @next %x.6, @d3 %x.8
+	%x.8 =w add %x.7, 1
+@d3
+	jnz %z.2, @d2, @end
+@end
+	ret0
+}
+
+--- Correct: size 319 ---
+export function $foo() {
+@start
+	%x.3 =w copy 1
+	%y.4 =w copy 1
+@prehead@d0
+	%z.1 =w add %y.4, 1
+@d0
+	%x.5 =w phi @start %x.3, @d1 %x.6
+	%x.6 =w add %x.5, 1
+@d1
+	jnz %z.1, @d0, @next
+@next
+@prehead@d2
+	%z.2 =w add %y.4, 1
+@d2
+	%x.7 =w phi @next %x.6, @d3 %x.8
+	%x.8 =w add %x.7, 1
+@d3
+	jnz %z.2, @d2, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #9 =======
+--- Input: size 217 ---
+export function w $foo() {
+@start
+%x =w copy 1
+@d0
+%y =w copy %x
+%k =w copy 1
+%z =w add %x, %y
+@d1
+%k =w add %k, 1
+jnz %k, @d1,@d2
+@d2
+jnz %y, @d3, @d4
+@d3
+jmp @d5
+@d4
+%y =w add %z, 1
+@d5
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 300 ---
+export function $foo() {
+@start
+	%x.2 =w copy 1
+@prehead@d0
+	%y.3 =w copy %x.2
+	%k.4 =w copy 1
+	%z.5 =w add %x.2, %y.3
+	%y.1 =w add %z.5, 1
+@d0
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %y.3, @d3, @d4
+@d3
+	jmp @d5
+@d4
+@d5
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 300 ---
+export function $foo() {
+@start
+	%x.2 =w copy 1
+@prehead@d0
+	%y.3 =w copy %x.2
+	%k.4 =w copy 1
+	%z.5 =w add %x.2, %y.3
+	%y.1 =w add %z.5, 1
+@d0
+@d1
+	%k.6 =w phi @d0 %k.4, @d1 %k.7
+	%k.7 =w add %k.6, 1
+	jnz %k.7, @d1, @d2
+@d2
+	jnz %y.3, @d3, @d4
+@d3
+	jmp @d5
+@d4
+@d5
+	jnz %z.5, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=25468928, maxrss=1748992, nvcsw=1, nivcsw=2 }
+checker: { utime=0, stime=0, ptime=0, rtime=2, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #10 =======
+--- Input: size 308 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%k =w copy 1
+%t =w copy 1
+@d0
+%k =w add %k,1
+%y =w copy %x
+%z =w add %x, %y
+@d1
+%z =w add %k, 1
+%t =w add %t, 1
+@d2
+%r =w add %t, 1
+%p =w add %k, 1
+%l =w copy 1
+jnz %l,@d2,@d3
+@d3
+%q =w add %k, 1
+jnz %k, @d1,@d4
+@d4
+%m =w add %k, 1
+jnz %z, @d0, @end
+@end
+ret
+}
+
+--- Output: size 506 ---
+export function $foo() {
+@start
+	%x.2 =w copy 1
+	%k.3 =w copy 1
+	%t.4 =w copy 1
+@prehead@d0
+	%l =w copy 1
+	%y =w copy %x.2
+	%z.1 =w add %x.2, %y
+@d0
+	%t.5 =w phi @start %t.4, @d4 %t.10
+	%k.6 =w phi @start %k.3, @d4 %k.7
+	%k.7 =w add %k.6, 1
+@prehead@d1
+	%q =w add %k.7, 1
+	%p =w add %k.7, 1
+	%z.9 =w add %k.7, 1
+@d1
+	%t.8 =w phi @d0 %t.5, @d3 %t.10
+	%t.10 =w add %t.8, 1
+@prehead@d2
+	%r =w add %t.10, 1
+@d2
+	jnz %l, @d2, @d3
+@d3
+	jnz %k.7, @d1, @d4
+@d4
+	%m =w add %k.7, 1
+	jnz %z.9, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 506 ---
+export function $foo() {
+@start
+	%x.2 =w copy 1
+	%k.3 =w copy 1
+	%t.4 =w copy 1
+@prehead@d0
+	%y =w copy %x.2
+	%z.1 =w add %x.2, %y
+	%l =w copy 1
+@d0
+	%t.5 =w phi @start %t.4, @d4 %t.10
+	%k.6 =w phi @start %k.3, @d4 %k.7
+	%k.7 =w add %k.6, 1
+@prehead@d1
+	%z.9 =w add %k.7, 1
+	%p =w add %k.7, 1
+	%q =w add %k.7, 1
+@d1
+	%t.8 =w phi @d0 %t.5, @d3 %t.10
+	%t.10 =w add %t.8, 1
+@prehead@d2
+	%r =w add %t.10, 1
+@d2
+	jnz %l, @d2, @d3
+@d3
+	jnz %k.7, @d1, @d4
+@d4
+	%m =w add %k.7, 1
+	jnz %z.9, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=4, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=2, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #11 =======
+--- Input: size 334 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy %x
+%k =w copy 1
+%z =w add %x, %y
+%l =w copy 1
+%m =w copy 1
+@d0
+%m =w add %m,1
+jnz %z,@d1,@d2
+@d1
+%k =w add %k, 1
+%u =w add %z, 1
+%l =w add %y, 1
+%t =w add %m, 1
+jnz %m, @d0, @end
+@d2
+%z =w add %z, 1
+%v =w add %k, 1
+%l =w add %y, 1
+%t =w add %m, 1
+jnz %m, @d0, @end
+@end
+ret
+}
+
+--- Output: size 574 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.6 =w copy %x
+	%k.7 =w copy 1
+	%z.8 =w add %x, %y.6
+	%l.1 =w copy 1
+	%m.9 =w copy 1
+@prehead@d0
+	%l.2 =w add %y.6, 1
+	%l.3 =w add %y.6, 1
+@d0
+	%m.10 =w phi @start %m.9, @d2 %m.13, @d1 %m.13
+	%z.11 =w phi @start %z.8, @d2 %z.14, @d1 %z.11
+	%k.12 =w phi @start %k.7, @d2 %k.12, @d1 %k.15
+	%m.13 =w add %m.10, 1
+	jnz %z.11, @d1, @d2
+@d1
+	%k.15 =w add %k.12, 1
+	%u =w add %z.11, 1
+	%t.4 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@d2
+	%z.14 =w add %z.11, 1
+	%v =w add %k.12, 1
+	%t.5 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 574 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.6 =w copy %x
+	%k.7 =w copy 1
+	%z.8 =w add %x, %y.6
+	%l.1 =w copy 1
+	%m.9 =w copy 1
+@prehead@d0
+	%l.2 =w add %y.6, 1
+	%l.3 =w add %y.6, 1
+@d0
+	%m.10 =w phi @start %m.9, @d2 %m.13, @d1 %m.13
+	%z.11 =w phi @start %z.8, @d2 %z.14, @d1 %z.11
+	%k.12 =w phi @start %k.7, @d2 %k.12, @d1 %k.15
+	%m.13 =w add %m.10, 1
+	jnz %z.11, @d1, @d2
+@d1
+	%k.15 =w add %k.12, 1
+	%u =w add %z.11, 1
+	%t.4 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@d2
+	%z.14 =w add %z.11, 1
+	%v =w add %k.12, 1
+	%t.5 =w add %m.13, 1
+	jnz %m.13, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }
+
+====== Test #12 =======
+--- Input: size 525 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy %x
+%k =w copy 1
+%z =w add %x, %y
+%l =w copy 1
+%m =w copy 1
+%a =w copy 1
+%b =w copy 1
+@d0
+%m =w add %m,1
+jnz %z,@d1,@d2
+@d1
+%k =w add %k, 1
+%q =w add %z, 1
+%l =w add %y, 1
+%m =w add %y, 1
+jnz %k,@d1, @d3
+@d2
+%v =w add %k,1
+%z =w add %z, 1
+%l =w add %y, 1
+%m =w add %y, 1
+jnz %k,@d2, @d3
+@d3
+%f =w add %z, %y
+%t =w add %k, %y
+%s =w add %y, 1
+jnz %f, @d4,@d5
+@d4
+%a =w add %a,1
+%e =w add %b,1
+jnz %k,@d0,@end
+@d5
+%b =w add %b,1
+%n =w add %a,1
+jnz %z,@d0,@end
+@end
+ret
+}
+
+--- Output: size 1141 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.5 =w copy %x
+	%k.6 =w copy 1
+	%z.7 =w add %x, %y.5
+	%l.1 =w copy 1
+	%m.8 =w copy 1
+	%a.9 =w copy 1
+	%b.10 =w copy 1
+@prehead@d0
+	%s =w add %y.5, 1
+	%l.2 =w add %y.5, 1
+	%m.26 =w add %y.5, 1
+	%l.3 =w add %y.5, 1
+	%m.23 =w add %y.5, 1
+@d0
+	%b.11 =w phi @start %b.10, @d5 %b.19, @d4 %b.11
+	%a.12 =w phi @start %a.9, @d5 %a.12, @d4 %a.20
+	%m.13 =w phi @start %m.8, @d5 %m.16, @d4 %m.16
+	%z.14 =w phi @start %z.7, @d5 %z.17, @d4 %z.17
+	%k.15 =w phi @start %k.6, @d5 %k.18, @d4 %k.18
+	%m.4 =w add %m.13, 1
+	jnz %z.14, @prehead@d1, @prehead@d2
+@prehead@d1
+	%q =w add %z.14, 1
+@d1
+	%k.24 =w phi @d0 %k.15, @d1 %k.25
+	%k.25 =w add %k.24, 1
+	jnz %k.25, @d1, @d3
+@prehead@d2
+	%v =w add %k.15, 1
+@d2
+	%z.21 =w phi @d0 %z.14, @d2 %z.22
+	%z.22 =w add %z.21, 1
+	jnz %k.15, @d2, @d3
+@d3
+	%m.16 =w phi @d2 %m.23, @d1 %m.26
+	%z.17 =w phi @d2 %z.22, @d1 %z.14
+	%k.18 =w phi @d2 %k.15, @d1 %k.25
+	%f =w add %z.17, %y.5
+	%t =w add %k.18, %y.5
+	jnz %f, @d4, @d5
+@d4
+	%a.20 =w add %a.12, 1
+	%e =w add %b.11, 1
+	jnz %k.18, @d0, @end
+@d5
+	%b.19 =w add %b.11, 1
+	%n =w add %a.12, 1
+	jnz %z.17, @d0, @end
+@end
+	ret0
+}
+
+--- Correct: size 1141 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.5 =w copy %x
+	%k.6 =w copy 1
+	%z.7 =w add %x, %y.5
+	%l.1 =w copy 1
+	%m.8 =w copy 1
+	%a.9 =w copy 1
+	%b.10 =w copy 1
+@prehead@d0
+	%l.2 =w add %y.5, 1
+	%m.26 =w add %y.5, 1
+	%l.3 =w add %y.5, 1
+	%m.23 =w add %y.5, 1
+	%s =w add %y.5, 1
+@d0
+	%b.11 =w phi @start %b.10, @d5 %b.19, @d4 %b.11
+	%a.12 =w phi @start %a.9, @d5 %a.12, @d4 %a.20
+	%m.13 =w phi @start %m.8, @d5 %m.16, @d4 %m.16
+	%z.14 =w phi @start %z.7, @d5 %z.17, @d4 %z.17
+	%k.15 =w phi @start %k.6, @d5 %k.18, @d4 %k.18
+	%m.4 =w add %m.13, 1
+	jnz %z.14, @prehead@d1, @prehead@d2
+@prehead@d1
+	%q =w add %z.14, 1
+@d1
+	%k.24 =w phi @d0 %k.15, @d1 %k.25
+	%k.25 =w add %k.24, 1
+	jnz %k.25, @d1, @d3
+@prehead@d2
+	%v =w add %k.15, 1
+@d2
+	%z.21 =w phi @d0 %z.14, @d2 %z.22
+	%z.22 =w add %z.21, 1
+	jnz %k.15, @d2, @d3
+@d3
+	%m.16 =w phi @d2 %m.23, @d1 %m.26
+	%z.17 =w phi @d2 %z.22, @d1 %z.14
+	%k.18 =w phi @d2 %k.15, @d1 %k.25
+	%f =w add %z.17, %y.5
+	%t =w add %k.18, %y.5
+	jnz %f, @d4, @d5
+@d4
+	%a.20 =w add %a.12, 1
+	%e =w add %b.11, 1
+	jnz %k.18, @d0, @end
+@d5
+	%b.19 =w add %b.11, 1
+	%n =w add %a.12, 1
+	jnz %z.17, @d0, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1785856, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=4132864, maxrss=1814528, nvcsw=1, nivcsw=2 }
+
+====== Test #13 =======
+--- Input: size 357 ---
+export function w $foo() {
+@start
+%x =w copy 1
+%y =w copy %x
+%k =w copy 1
+%z =w add %x, %y
+%l =w copy 1
+%m =w copy 1
+@d0
+%m =w add %m,1
+jnz %z,@d2,@d5
+@d5
+jnz %z,@d0,@end
+@d1
+%k =w add %k, 1
+%z =w add %y, 1
+%l =w add %y, 1
+%p =w add %m, 1
+jnz %m, @d2, @d4
+@d4
+jnz %m, @d1, @end
+@d2
+%k =w add %y,1
+%z =w add %z, 1
+%l =w add %y, 1
+jnz %m, @d1, @d0
+@end
+ret
+}
+
+--- Output: size 639 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.5 =w copy %x
+	%k.1 =w copy 1
+	%z.6 =w add %x, %y.5
+	%l.2 =w copy 1
+	%m.7 =w copy 1
+@prehead@d0
+	%k.12 =w add %y.5, 1
+	%l.4 =w add %y.5, 1
+	%z.16 =w add %y.5, 1
+	%l.3 =w add %y.5, 1
+@d0
+	%m.8 =w phi @start %m.7, @d2 %m.10, @d5 %m.10
+	%z.9 =w phi @start %z.6, @d2 %z.13, @d5 %z.9
+	%m.10 =w add %m.8, 1
+	jnz %z.9, @prehead@d2, @d5
+@d5
+	jnz %z.9, @d0, @end
+@d1
+	%k.14 =w phi @d2 %k.12, @d4 %k.15
+	%k.15 =w add %k.14, 1
+	jnz %m.10, @d2, @d4
+@d4
+	jnz %m.10, @d1, @end
+@prehead@d2
+	%p =w add %m.10, 1
+@d2
+	%z.11 =w phi @d0 %z.9, @d1 %z.16
+	%z.13 =w add %z.11, 1
+	jnz %m.10, @d1, @d0
+@end
+	ret0
+}
+
+--- Correct: size 639 ---
+export function $foo() {
+@start
+	%x =w copy 1
+	%y.5 =w copy %x
+	%k.1 =w copy 1
+	%z.6 =w add %x, %y.5
+	%l.2 =w copy 1
+	%m.7 =w copy 1
+@prehead@d0
+	%k.12 =w add %y.5, 1
+	%l.4 =w add %y.5, 1
+	%z.16 =w add %y.5, 1
+	%l.3 =w add %y.5, 1
+@d0
+	%m.8 =w phi @start %m.7, @d2 %m.10, @d5 %m.10
+	%z.9 =w phi @start %z.6, @d2 %z.13, @d5 %z.9
+	%m.10 =w add %m.8, 1
+	jnz %z.9, @prehead@d2, @d5
+@d5
+	jnz %z.9, @d0, @end
+@d1
+	%k.14 =w phi @d2 %k.12, @d4 %k.15
+	%k.15 =w add %k.14, 1
+	jnz %m.10, @d2, @d4
+@d4
+	jnz %m.10, @d1, @end
+@prehead@d2
+	%p =w add %m.10, 1
+@d2
+	%z.11 =w phi @d0 %z.9, @d1 %z.16
+	%z.13 =w add %z.11, 1
+	jnz %m.10, @d1, @d0
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=4186112, maxrss=1814528, nvcsw=1, nivcsw=2 }
+
+====== Test #14 =======
+--- Input: size 285 ---
+export function $foo() {
+@start
+  %z =w copy 0
+  jnz %z, @d1, @d2
+@d1
+  %x.3 =w copy 0
+  jmp @d3
+@d2
+  %x.2 =w copy 1
+@d3
+  %x.1 =w phi @d2 %x.2, @d1 %x.3
+  %test =w copy 0
+  jnz %x.1, @d4, @d5
+@d4
+  %a =w copy 1
+  jnz %a, @d1, @end
+@d5
+  %b =w copy 1
+  jnz %b, @d2, @end
+@end
+  ret
+}
+
+--- Output: size 273 ---
+export function $foo() {
+@start
+	%z =w copy 0
+	jnz %z, @d1, @d2
+@d1
+	%x.3 =w copy 0
+	jmp @d3
+@d2
+	%x.2 =w copy 1
+@d3
+	%x.1 =w phi @d2 %x.2, @d1 %x.3
+	%test =w copy 0
+	jnz %x.1, @d4, @d5
+@d4
+	%a =w copy 1
+	jnz %a, @d1, @end
+@d5
+	%b =w copy 1
+	jnz %b, @d2, @end
+@end
+	ret0
+}
+
+--- Correct: size 273 ---
+export function $foo() {
+@start
+	%z =w copy 0
+	jnz %z, @d1, @d2
+@d1
+	%x.3 =w copy 0
+	jmp @d3
+@d2
+	%x.2 =w copy 1
+@d3
+	%x.1 =w phi @d2 %x.2, @d1 %x.3
+	%test =w copy 0
+	jnz %x.1, @d4, @d5
+@d4
+	%a =w copy 1
+	jnz %a, @d1, @end
+@d5
+	%b =w copy 1
+	jnz %b, @d2, @end
+@end
+	ret0
+}
+
+--- Stderr: size 0 ---
+
+--- Checker output: size 3 ---
+OK
+
+--- Resource usage ---
+program: { utime=0, stime=0, ptime=0, rtime=2, maxvsz=0, maxrss=1748992, nvcsw=1, nivcsw=1 }
+checker: { utime=0, stime=0, ptime=0, rtime=3, maxvsz=0, maxrss=1814528, nvcsw=1, nivcsw=1 }

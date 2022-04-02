@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7EDE837227F5D7FC00CCC78E"
-               BuildableName = "QBE copy"
-               BlueprintName = "QBE copy"
+               BuildableName = "4licm"
+               BlueprintName = "4licm"
                ReferencedContainer = "container:QBE.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EDE837227F5D7FC00CCC78E"
-            BuildableName = "QBE copy"
-            BlueprintName = "QBE copy"
+            BuildableName = "4licm"
+            BlueprintName = "4licm"
             ReferencedContainer = "container:QBE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7EDE837227F5D7FC00CCC78E"
-            BuildableName = "QBE copy"
-            BlueprintName = "QBE copy"
+            BuildableName = "4licm"
+            BlueprintName = "4licm"
             ReferencedContainer = "container:QBE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
